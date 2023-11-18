@@ -1,7 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:quiz_app/utils/database/database.dart';
 import 'package:quiz_app/view/ResultPage/ResultPage.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,26 +12,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int questionno = 0;
-  int checkvalue = 0;
+  int quest_no = 0;
+  int value = 0;
   int score = 0;
+
   void counter() {
-    if (questionno == DataBase.myData.length - 1) {
+    if (quest_no == DataBase.myData.length - 1) {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ResultPage(score: score),
-          ));
+        context as BuildContext,
+        MaterialPageRoute(builder: (context) => ResultPage(score: score)),
+      );
     } else {
-      questionno = questionno + 1;
+      quest_no == quest_no + 1;
     }
     setState(() {});
-    print(questionno);
+    print(quest_no);
   }
 
   void previous() {
-    if (questionno > 0) {
-      questionno--;
+    if (quest_no > 0) {
+      quest_no--;
     }
     setState(() {});
   }
@@ -39,97 +40,46 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Let's Qwiz...!!"),
-        backgroundColor: Colors.deepPurple,
+        title: const Text("QwizB"),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 70,
-                  width: 500,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.black),
-                  ),
-                  child: Text(
-                    DataBase.myData[questionno]["question"],
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-              Text(questionno.toString()),
-              SizedBox(
-                height: 30,
-              ),
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            ListView.separated(
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: 4,
-                itemBuilder: (context, index) => Padding(
-                  padding:
-                      const EdgeInsets.only(left: 50, bottom: 20, right: 50),
-                  child: InkWell(
-                    onTap: () {
-                      if (index == DataBase.myData[questionno]["answer"]) {
-                        score++;
-                      }
-
-                      print(index);
-                      checkvalue = index;
-                      setState(() {});
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.black),
-                          color: checkvalue == index
-                              ? checkvalue ==
-                                      DataBase.myData[questionno]["answer"]
-                                  ? Colors.green
-                                  : Colors.red
-                              : Colors.amber),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:
-                            Text(DataBase.myData[questionno]["options"][index]),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10,
-                    ),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          previous();
-                        },
-                        child: Text("Previous")),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        counter();
-                        checkvalue = 5;
+                itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        // print(index);
+                        value = index;
                         setState(() {});
                       },
-                      child: Text("Next")),
-                ],
-              )
-            ],
-          ),
+                      child: Container(
+                        height: 50,
+                        color: value == index
+                            ? value == DataBase.myData[index]['answer']
+                                ? Colors.green
+                                : Colors.red
+                            : Colors.amber,
+                        child: Center(
+                            child: Text(DataBase.myData[0]['options'][index])),
+                      ),
+                    ),
+                separatorBuilder: (context, index) => SizedBox(
+                      height: 10,
+                    )),
+            Text(value.toString()),
+            SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  counter();
+                },
+                child: Text("save"))
+          ],
         ),
       ),
     );

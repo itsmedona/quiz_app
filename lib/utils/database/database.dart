@@ -1,12 +1,6 @@
 class DataBase {
   static List<Map<String, dynamic>> myData = [
     {
-      "question":
-          "what programming language is primarily used for building flutter apps?",
-      "options": ["java", "python", "dart", "javascript"],
-      "answer": 2,
-    },
-    {
       "question": "How many types of widgets are there in flutter?",
       "options": ["2", "1", "5", "4"],
       "answer": 0,
@@ -34,12 +28,6 @@ class DataBase {
           "What is the Flutter widget that represents the basic building block of the user interface?",
       "options": ["Blocks", "Widgets", "Elements", "Components"],
       "answer": 1
-    },
-    {
-      "question":
-          "In Flutter, what is the primary language for creating user interfaces?",
-      "options": ["HTML", "Java", "Dart", "C#"],
-      "answer": 2
     },
     {
       "question":
