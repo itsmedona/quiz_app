@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/view/HomePage/HomePage.dart';
 
 // ignore: must_be_immutable
 class ResultPage extends StatelessWidget {
@@ -14,8 +15,32 @@ class ResultPage extends StatelessWidget {
         title: const Text("QwizB"),
       ),
       body: Center(
-        child: Text(score.toString()),
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Your Score:$score",
+            style: const TextStyle(
+                color: Colors.purple,
+                fontWeight: FontWeight.w500,
+                fontSize: 35),
+          ),
+          SizedBox(
+            height: 250,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomePage(),
+                ),
+              );
+            },
+            child: const Text("Try Again"),
+          )
+        ],
+      )),
     );
   }
 }
