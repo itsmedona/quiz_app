@@ -16,33 +16,35 @@ class ResultPage extends StatelessWidget {
         backgroundColor: Colors.deepPurpleAccent,
         elevation: 10,
       ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Your Score:$score",
-            style: const TextStyle(
-                color: Colors.purple,
-                fontWeight: FontWeight.w500,
-                fontSize: 35),
-          ),
-          SizedBox(
-            height: 250,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-              );
-            },
-            child: const Text("Try Again"),
-          )
-        ],
-      )),
+      body: SafeArea(
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Your Score: $score",
+              style: const TextStyle(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 35),
+            ),
+            SizedBox(
+              height: 250,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
+              child: const Text("Try Again"),
+            )
+          ],
+        )),
+      ),
     );
   }
 }
