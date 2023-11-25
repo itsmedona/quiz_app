@@ -13,6 +13,8 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("QwizB"),
+        backgroundColor: Colors.deepPurpleAccent,
+        elevation: 10,
       ),
       body: Center(
           child: Column(
