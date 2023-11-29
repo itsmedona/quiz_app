@@ -7,7 +7,6 @@ class ResultPage extends StatelessWidget {
   final int score;
 
   // int score;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
